@@ -17,12 +17,17 @@ class CreatePersonaProyectoEnlace extends Migration
             $table->bigIncrements('id');
             $table->date('fecha_ingreso');
             $table->date('fecha_retiro');
-            $table->unsignedBigInteger('id_persona');
             $table->unsignedBigInteger('id_proyecto');
+            $table->unsignedBigInteger('id_sprint');
+            $table->unsignedBigInteger('id_tarea');
+            $table->unsignedBigInteger('id_persona');
             $table->timestamps();
 
-            $table->foreign('id_persona')->references('id')->on('spr_persona');
             $table->foreign('id_proyecto')->references('id')->on('spr_proyecto');
+            $table->foreign('id_sprint')->references('id')->on('spr_sprint');
+            $table->foreign('id_tarea')->references('id')->on('spr_tarea');
+            $table->foreign('id_persona')->references('id')->on('spr_persona');
+            
         });
     }
 

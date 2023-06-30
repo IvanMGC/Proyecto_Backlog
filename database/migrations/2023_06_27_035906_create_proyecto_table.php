@@ -17,8 +17,10 @@ class CreateProyectoTable extends Migration
             $table->bigIncrements('id');
             $table->string('nombre')->unique();
             $table->integer('cantidad_participantes');
-            $table->integer('cantidad_objetivos');
-            $table->float('porcentaje_progreso',2,2);
+            $table->decimal('inversion',8,2);
+            $table->integer('duracion_estimado');
+            $table->float('porcentaje_progreso',3,2);
+            $table->integer('objetivos');
             $table->date('fecha_inicializacion');
             $table->date('fecha_finalizacion');
             $table->timestamps();
