@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePersonaTable extends Migration
+class CreateStateTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,9 @@ class CreatePersonaTable extends Migration
      */
     public function up()
     {
-        Schema::create('spr_persona', function (Blueprint $table) {
+        Schema::create('spr_state', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('nombre');
-            $table->string('apellido');
-            $table->string('telefono',25)->unique();
-            $table->string('correo_electronico')->unique();
+            $table->string('state_name',11);
             $table->timestamps();
         });
     }
@@ -30,6 +27,6 @@ class CreatePersonaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('spr_persona');
+        Schema::dropIfExists('spr_state');
     }
 }

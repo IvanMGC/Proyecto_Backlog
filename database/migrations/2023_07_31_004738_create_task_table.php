@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTareaTable extends Migration
+class CreateTaskTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,20 @@ class CreateTareaTable extends Migration
      */
     public function up()
     {
-        Schema::create('spr_tarea', function (Blueprint $table) {
+        Schema::create('spr_task', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('nombre');
-            $table->text('descripcion');
-            $table->timeTz('duracion_estimado', 0);
+            $table->unsignedBigInteger('id_user');
             $table->unsignedBigInteger('id_sprint');
-            $table->unsignedBigInteger('id_estado');
+            $table->unsignedBigInteger('id_state');
+            $table->string('name');
+            $table->text('description');
+            $table->dateTime('start_date');
+            $table->dateTime('final_date');
             $table->timestamps();
 
+            $table->foreign('id_user')->references('id')->on('users');
             $table->foreign('id_sprint')->references('id')->on('spr_sprint');
-            $table->foreign('id_estado')->references('id')->on('spr_estado_tarea');
+            $table->foreign('id_state')->references('id')->on('spr_state');
         });
     }
 
@@ -34,6 +37,6 @@ class CreateTareaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('spr_tarea');
+        Schema::dropIfExists('spr_task');
     }
 }
