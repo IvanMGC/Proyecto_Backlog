@@ -36,5 +36,6 @@ class AppServiceProvider extends ServiceProvider
         $this->registerPolicies();
  
         Passport::routes();
+        Passport::personalAccessClientId(3);
     }
 }
